@@ -1,31 +1,117 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --background-color: #ffffff;
+  --text-color: #111111;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #333333;
+    --text-color: #ffffff;
+  }
 }
-a:hover {
-  color: #535bf2;
+
+@supports (color: light-dark(#000000, #ffffff)) {
+  :root {
+    --background-color: light-dark(#ffffff, #333333);
+    --text-color: light-dark(#111111, #ffffff);
+  }
 }
 
 body {
   margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: light-dark(#ddd, #444);
+  color: light-dark(#333, #fff);
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: light-dark(#bbb, #666);
+}
+
+:root {
+  --black: black;
+  --white: white;
+  --gray: rgba(128, 128, 128, 0.625);
+  --section: white;
+}
+
+body.dark {
+  --black: rgb(255, 255, 255);
+  --white: rgb(0, 0, 0);
+  --gray: rgba(128, 128, 128, 0.625);
+  --section: rgb(37, 37, 37);
+}
+
+.toggle-dark-theme {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.toggle-dark-theme button {
+  width: 70px;
+  background-color: gray;
+  border-radius: 20px;
+  border: none;
+  position: relative;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.toggle-dark-theme .icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: rgb(50, 0, 106);
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.toggle-dark-theme .icon::before {
+  font-weight: 400;
+  content: "\1F319";
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+}
+
+body.dark .toggle-dark-theme .icon {
+  transform: translateX(calc(100% + 10px));
+  background-color: yellow;
+}
+
+body.dark .toggle-dark-theme .icon::before {
+  color: black;
+  content: "\2600";
 }
